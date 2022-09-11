@@ -1,8 +1,7 @@
-const createShip = require("./ship");
+const createShip = require("../factories/ship");
 
-test("creates ship's hitpoints", () => {
-  expect(createShip(4).hp).toEqual([false, false, false, false]);
-});
+test("creates ship's hitpoints", () =>
+  expect(createShip(4).hp).toEqual([false, false, false, false]));
 
 describe("ship gets hit", () => {
   let newShip = {};
