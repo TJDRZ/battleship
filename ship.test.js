@@ -13,6 +13,11 @@ describe("ship gets hit", () => {
     expect(newShip.hp).toEqual([false, true]);
   });
 
+  test("ship gets sunk on NOT all hitpoints hit", () => {
+    newShip.hit(0);
+    expect(newShip.isSunk).toBeFalsy();
+  });
+
   test("ship gets sunk on all hitpoints hit", () => {
     newShip.hit(0);
     newShip.hit(1);
