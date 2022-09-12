@@ -1,4 +1,4 @@
-const createShip = require("./ship");
+const ship = require("./ship");
 
 // const ships = [
 //     carrier, // 5 slots
@@ -30,15 +30,19 @@ function gameboard() {
   return {
     board,
     addShip(x, y, direction, length) {
+      const coordinates = [];
       if ((direction = "V")) {
         for (let i = 0; i < length; i++) {
-          board[x][y + i].holdsShip = true;
+          this.board[x][y + i].holdsShip = true;
+          coordinates.push([x, y + i]);
         }
       } else {
         for (let i = 0; i < length; i++) {
-          board[x + i][y].holdsShip = true;
+          this.board[x + i][y].holdsShip = true;
+          coordinates.push([x + i, y]);
         }
-      } // we are making ships in gameboard and ignoring ship objects/factory
+      }
+      ship(coordinates);
     },
   };
 }
