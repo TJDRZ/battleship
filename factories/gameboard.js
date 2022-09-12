@@ -53,7 +53,7 @@ function gameboard() {
         for (let i = 0; i < length; i++) {
           board[x + i][y].holdsShip = true;
         }
-      }
+      } // we are making ships in gameboard and ignoring ship objects/factory
     },
   };
 }
