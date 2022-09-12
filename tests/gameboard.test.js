@@ -108,8 +108,6 @@ describe("adding ships", () => {
   });
 });
 
-// test("active player", () => {});
-
 // describe("receive attack", () => {
 //   test("attack miss", () => {});
 
