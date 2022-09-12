@@ -8,46 +8,14 @@ const createShip = require("./ship");
 //     destroyer, // 2 slots
 //   ];
 
-function _createGrid() {
+const _createGrid = () => {
   const grid = [];
   for (let i = 0; i < 10; i++) {
     const row = [];
-    let x = "";
-    switch (i) {
-      case 0:
-        x = "A";
-        break;
-      case 1:
-        x = "B";
-        break;
-      case 2:
-        x = "C";
-        break;
-      case 3:
-        x = "D";
-        break;
-      case 4:
-        x = "E";
-        break;
-      case 5:
-        x = "F";
-        break;
-      case 6:
-        x = "G";
-        break;
-      case 7:
-        x = "H";
-        break;
-      case 8:
-        x = "I";
-        break;
-      case 9:
-        x = "J";
-        break;
-    }
     for (let j = 0; j < 10; j++) {
       row.push({
-        coordinates: `${x}${j}`,
+        x: i,
+        y: j,
         holdsShip: false,
         attacked: false,
       });
@@ -55,15 +23,37 @@ function _createGrid() {
     grid.push(row);
   }
   return grid;
-}
+};
+
+const _addShip = (board, startingCoordinate, direction, length) => {
+  const shipCoords = [startingCoordinate];
+  if ((direction = "V")) {
+    for (let i = 0; i < length; i++) {
+      board.forEach((row) => {
+        row.forEach((square) => {
+          if ((square.coordinates = startingCoordinate)) {
+            return square;
+          }
+        });
+      });
+    }
+  }
+};
 
 function gameboard() {
   const board = _createGrid();
   return {
     board,
     addShip(x, y, direction, length) {
-      createShip(length);
-      grid[(x, y)];
+      if ((direction = "V")) {
+        for (let i = 0; i < length; i++) {
+          board[x][y + i].holdsShip = true;
+        }
+      } else {
+        for (let i = 0; i < length; i++) {
+          board[x + i][y].holdsShip = true;
+        }
+      }
     },
   };
 }
