@@ -25,21 +25,6 @@ const _createGrid = () => {
   return grid;
 };
 
-const _addShip = (board, startingCoordinate, direction, length) => {
-  const shipCoords = [startingCoordinate];
-  if ((direction = "V")) {
-    for (let i = 0; i < length; i++) {
-      board.forEach((row) => {
-        row.forEach((square) => {
-          if ((square.coordinates = startingCoordinate)) {
-            return square;
-          }
-        });
-      });
-    }
-  }
-};
-
 function gameboard() {
   const board = _createGrid();
   return {
