@@ -108,10 +108,33 @@ describe("adding ships", () => {
   });
 });
 
-// describe("receive attack", () => {
-//   test("attack miss", () => {});
+describe("receive attack", () => {
+  test("attack miss", () => {
+    expect(board.receiveAttack([1, 0])).toEqual({
+      x: 1,
+      y: 0,
+      holdsShip: false,
+      attacked: true,
+    });
+  });
 
-//   test("attack hit", () => {});
+  test("attack hit", () => {
+    expect(board.receiveAttack([0, 0])).toEqual([
+      {
+        x: 0,
+        y: 0,
+        holdsShip: true,
+        attacked: true,
+      },
+      {
+        x: 0,
+        y: 0,
+        attacked: true,
+      },
+    ]);
+  });
 
-//   test("all ships sunk, Game Over", () => {});
-// });
+  test("all ships sunk, Game Over", () => {
+    expect(board.receiveAttack([0, 0])).toEqual("Game Over");
+  });
+});
