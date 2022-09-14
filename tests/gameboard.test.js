@@ -109,6 +109,11 @@ describe("adding ships", () => {
 });
 
 describe("receive attack", () => {
+  let board = {};
+  beforeEach(() => {
+    board = gameboard();
+    board.addShip(0, 0, "V", 2);
+  });
   test("attack miss", () => {
     expect(board.receiveAttack([1, 0])).toEqual({
       x: 1,
