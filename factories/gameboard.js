@@ -44,6 +44,7 @@ function gameboard() {
       }
       ship(coordinates);
     },
+    receiveAttack() {},
   };
 }
 
