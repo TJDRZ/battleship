@@ -9,6 +9,7 @@ function ship(coordinates) {
   });
   return {
     hp,
+    isSunk: false,
     hit(coordinates) {
       const hitpoint = this.hp.find(
         (hitpoint) =>
@@ -19,7 +20,6 @@ function ship(coordinates) {
         return;
       } else this.isSunk = true;
     },
-    isSunk: false,
   };
 }
 

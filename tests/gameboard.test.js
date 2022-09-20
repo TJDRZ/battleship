@@ -114,32 +114,30 @@ describe("receive attack", () => {
     board = gameboard();
     board.addShip(0, 0, "V", 2);
   });
+
   test("attack miss", () => {
-    expect(board.receiveAttack([1, 0])).toEqual({
-      x: 1,
+    board.receiveAttack([1, 0]);
+    expect(board.board[0][0]).toEqual({
+      x: 0,
       y: 0,
-      holdsShip: false,
-      attacked: true,
+      holdsShip: true,
+      attacked: false,
     });
   });
 
   test("attack hit", () => {
-    expect(board.receiveAttack([0, 0])).toEqual([
-      {
-        x: 0,
-        y: 0,
-        holdsShip: true,
-        attacked: true,
-      },
-      {
-        x: 0,
-        y: 0,
-        attacked: true,
-      },
-    ]);
+    board.receiveAttack([0, 0]);
+    expect(board.board[0][0]).toEqual({
+      x: 0,
+      y: 0,
+      holdsShip: true,
+      attacked: true,
+    });
   });
 
   test("all ships sunk, Game Over", () => {
-    expect(board.receiveAttack([0, 0])).toEqual("Game Over");
+    board.receiveAttack([0, 0]);
+    board.receiveAttack([0, 1]);
+    expect(board.loser).toBeTruthy();
   });
 });
