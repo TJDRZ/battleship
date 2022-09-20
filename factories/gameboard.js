@@ -29,6 +29,8 @@ function gameboard() {
   const board = _createGrid();
   return {
     board,
+    ships: [],
+    loser: false,
     addShip(x, y, direction, length) {
       const coordinates = [];
       if ((direction = "V")) {
@@ -42,9 +44,9 @@ function gameboard() {
           coordinates.push([x + i, y]);
         }
       }
-      ship(coordinates);
+      this.ships.push(ship(coordinates));
     },
-    receiveAttack() {},
+    receiveAttack(coordinates) {},
   };
 }
 

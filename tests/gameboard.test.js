@@ -106,38 +106,53 @@ describe("adding ships", () => {
       attacked: false,
     });
   });
-});
 
-describe("receive attack", () => {
-  let board = {};
-  beforeEach(() => {
-    board = gameboard();
-    board.addShip(0, 0, "V", 2);
-  });
-
-  test("attack miss", () => {
-    board.receiveAttack([1, 0]);
-    expect(board.board[0][0]).toEqual({
-      x: 0,
-      y: 0,
-      holdsShip: true,
-      attacked: false,
-    });
-  });
-
-  test("attack hit", () => {
-    board.receiveAttack([0, 0]);
-    expect(board.board[0][0]).toEqual({
-      x: 0,
-      y: 0,
-      holdsShip: true,
-      attacked: true,
-    });
-  });
-
-  test("all ships sunk, Game Over", () => {
-    board.receiveAttack([0, 0]);
-    board.receiveAttack([0, 1]);
-    expect(board.loser).toBeTruthy();
+  test("adds ship to ships array - hp test", () => {
+    expect(board.ships[0].hp).toEqual([
+      {
+        x: 0,
+        y: 2,
+        attacked: false,
+      },
+      {
+        x: 0,
+        y: 3,
+        attacked: false,
+      },
+    ]);
   });
 });
+
+// describe("receive attack", () => {
+//   let board = {};
+//   beforeEach(() => {
+//     board = gameboard();
+//     board.addShip(0, 0, "V", 2);
+//   });
+
+//   test("attack miss", () => {
+//     board.receiveAttack([1, 0]);
+//     expect(board.board[0][0]).toEqual({
+//       x: 0,
+//       y: 0,
+//       holdsShip: true,
+//       attacked: false,
+//     });
+//   });
+
+//   test("attack hit", () => {
+//     board.receiveAttack([0, 0]);
+//     expect(board.board[0][0]).toEqual({
+//       x: 0,
+//       y: 0,
+//       holdsShip: true,
+//       attacked: true,
+//     });
+//   });
+
+//   test("all ships sunk, Game Over", () => {
+//     board.receiveAttack([0, 0]);
+//     board.receiveAttack([0, 1]);
+//     expect(board.loser).toBeTruthy();
+//   });
+// });
