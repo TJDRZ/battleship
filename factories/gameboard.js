@@ -46,7 +46,23 @@ function gameboard() {
       }
       this.ships.push(ship(coordinates));
     },
-    receiveAttack(coordinates) {},
+    receiveAttack(coordinates) {
+      const square = this.board[coordinates[0]][coordinates[1]];
+      square.attacked = true;
+      if (square.holdsShip) {
+        const ship = this.ships.find((ship) => {
+          const hitpoint = ship.hp.find(
+            (hitpoint) =>
+              hitpoint.x === coordinates[0] && hitpoint.y === coordinates[1]
+          );
+          if (hitpoint) ship.hit(coordinates);
+        });
+        if (this.ships.find((ship) => ship.isSunk === false)) {
+          return;
+        }
+        this.loser = true;
+      }
+    },
   };
 }
 
