@@ -130,7 +130,7 @@ describe("receive attack", () => {
     board.addShip(0, 0, "V", 2);
   });
 
-  test("attack miss", () => {
+  test("attack miss - board test", () => {
     board.receiveAttack([1, 0]);
     expect(board.board[0][0]).toEqual({
       x: 0,
@@ -138,6 +138,22 @@ describe("receive attack", () => {
       holdsShip: true,
       attacked: false,
     });
+  });
+
+  test("attack miss - ship test", () => {
+    board.receiveAttack([1, 0]);
+    expect(board.ships[0].hp).toEqual([
+      {
+        x: 0,
+        y: 0,
+        attacked: false,
+      },
+      {
+        x: 0,
+        y: 1,
+        attacked: false,
+      },
+    ]);
   });
 
   test("attack hit - board test", () => {
